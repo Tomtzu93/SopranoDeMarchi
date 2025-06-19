@@ -50,11 +50,11 @@ document.querySelectorAll('.btn-primary').forEach(button => {
         setTimeout(() => {
             ripple.remove();
         }, 600);
-        
+
         // Simulate ticket purchase (placeholder)
         setTimeout(() => {
-            alert('Grazie per il tuo interesse! Sarai reindirizzato al sistema di prenotazione.');
-        }, 100);
+            window.location.href = 'https://forms.gle/9kPXi2oGBeVmLr3Z8';
+        }, 50);
     });
 });
 
