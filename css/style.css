@@ -1,0 +1,211 @@
+:root {
+    --burgundy: #8B1538;
+    --deep-red: #A0282C;
+    --gold: #D4AF37;
+    --cream: #F5F1E8;
+    --dark-gray: #2C2C2C;
+    --warm-white: #FEFCF7;
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+.header-font {
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, var(--burgundy) 0%, var(--deep-red) 50%, var(--burgundy) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+    opacity: 0.3;
+}
+
+.silhouette-bg {
+    background: linear-gradient(180deg, var(--cream) 0%, #E8DCC0 100%);
+    position: relative;
+}
+
+.capranica-image {
+width: 300px;
+height: 300px;
+object-fit: cover;
+background-color: var(--burgundy);
+filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+margin: 0 auto;
+display: block;
+}
+
+.gold-accent {
+    color: var(--gold);
+}
+
+.program-item {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    padding-left: 1rem;
+}
+
+.program-item:hover {
+    border-left-color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateX(5px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8941F 100%);
+    color: var(--dark-gray);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #B8941F 0%, var(--gold) 100%);
+}
+
+.card-elegant {
+    background: var(--warm-white);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card-elegant:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+}
+
+.ornament {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    margin: 1rem auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Improved layout for centered button with decorative images */
+.hero-cta-container {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 2rem;
+min-height: 240px; /* <--- aumentato da 120px */
+}
+
+
+
+.hero-button-wrapper {
+    z-index: 10;
+    position: relative;
+}
+
+.hero-decorative-images {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+max-width: 950px; /* più larga per maggiore distanza */
+pointer-events: none;
+z-index: 1;
+padding: 0 1rem; /* aumenta distanza dal bordo */
+
+
+}
+
+.hero-image img {
+max-height: 270px; /* aumentato */
+width: auto;
+object-fit: contain;
+}
+
+.hero-image.right img {
+max-height: 220px; /* leggermente più piccola della sinistra */
+transform: translateX(40px) translateY(10px);
+}
+
+.hero-image.left {
+transform: translateX(-80px); /* sposta più a sinistra */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .hero-decorative-images {
+        display: none;
+    }
+    
+    .hero-cta-container {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-mobile-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+
+}
+
+.program-list {
+    max-height: none;
+    overflow: visible;
+}
+
+@media print {
+    body { background: white !important; }
+    .hero-bg { background: var(--burgundy) !important; }
+    .card-elegant { box-shadow: none !important; }
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
