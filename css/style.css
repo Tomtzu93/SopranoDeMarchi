@@ -236,6 +236,13 @@ transform: translateX(-80px); /* sposta più a sinistra */
 
 }
 
+@media (max-width: 488px) {
+  .text-3xl {
+    font-size: 1.575rem;  /* ~25.2px */
+    line-height: 2.25rem;
+  }
+}
+
 .program-list {
     max-height: none;
     overflow: visible;
