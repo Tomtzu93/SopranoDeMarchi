@@ -20,13 +20,20 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            // Usa una classe diversa per evitare conflitti
+            entry.target.classList.add('animate-in');
+            // Rimuovi l'elemento dall'observer una volta animato
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all cards and sections
-document.querySelectorAll('.card-elegant, section').forEach(el => {
+// Observe all cards and sections (esclude l'hero che ha già fade-in statico)
+document.querySelectorAll('.card-elegant, section:not(.hero-bg)').forEach(el => {
+    // Inizialmente nascosto
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     observer.observe(el);
 });
 
