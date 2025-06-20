@@ -151,6 +151,12 @@ display: block;
     margin: 1rem auto;
 }
 
+.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Opzionale: rimuovi o modifica la classe fade-in esistente se non serve più */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
