@@ -87,3 +87,13 @@ if (heroTitle) {
         this.style.textShadow = 'none';
     });
 }
+
+fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfn7sDoH5SOtySOzdSlIsfhufmJ6vUVNnCHmuO6qJBEro2DPIo1s3kpieAWphWKdkKjbRpeFJxsSkH/pub?gid=1180804499&single=true&output=csv")
+.then(response => response.text())
+.then(text => {
+    document.getElementById("posti-rimanenti").innerText = text.trim();
+})
+.catch(error => {
+    console.error("Errore nel caricamento dei dati:", error);
+    document.getElementById("posti-rimanenti").innerText = "N/D";
+});
