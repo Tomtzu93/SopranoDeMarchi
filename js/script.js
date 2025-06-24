@@ -60,7 +60,7 @@ document.querySelectorAll('.btn-primary').forEach(button => {
 
         // Simulate ticket purchase (placeholder)
         setTimeout(() => {
-            window.location.href = 'https://forms.gle/9kPXi2oGBeVmLr3Z8';
+            window.open('https://forms.gle/9kPXi2oGBeVmLr3Z8','_blank');
         }, 50);
     });
 });
