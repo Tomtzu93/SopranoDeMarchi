@@ -98,22 +98,52 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfn7sDoH5SOtySOzdSlIsfhu
     document.getElementById("posti-rimanenti").innerText = "N/D";
 });
 
-const locandina = document.getElementById("locandina");
+const poster = document.getElementById("locandina");
 const overlay = document.getElementById("locandina-overlay");
+const body = document.body;
 
-locandina.addEventListener("click", () => {
-  overlay.classList.remove("hidden");
-  // forza reflow per permettere la transizione
-  void overlay.offsetWidth;
-  overlay.classList.add("show");
-});
+function openOverlay() {
+  // Se l'overlay non è nel body, spostalo (evita il clipping da antenati con transform)
+  if (overlay.parentElement !== document.body) {
+    document.body.appendChild(overlay);
+  }
+  // mostra e anima
+  overlay.classList.remove("hidden");   // se usi la classe Tailwind hidden
+  overlay.offsetHeight;                 // forza reflow per transizione
+  overlay.classList.add("is-open");
+  body.classList.add("modal-open");
+}
 
-overlay.addEventListener("click", () => {
-  overlay.classList.remove("show");
+function closeOverlay() {
+  overlay.classList.remove("is-open");
+  body.classList.remove("modal-open");
+  // aspetta fine transizione prima di nascondere
   setTimeout(() => {
-    overlay.classList.add("hidden");
-  }, 400); // attende la fine della transizione
-});
+    overlay.classList.add("hidden");    // opzionale: se vuoi proprio display:none
+  }, 350);
+}
+
+if (poster && overlay) {
+  poster.addEventListener("click", openOverlay);
+
+  // chiudi cliccando lo sfondo (non l'immagine)
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  // evita la chiusura quando clicchi sulla locandina
+  const bigImg = overlay.querySelector("img");
+  if (bigImg) bigImg.addEventListener("click", (e) => e.stopPropagation());
+
+  // chiusura con ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("is-open")) {
+      closeOverlay();
+    }
+  });
+}
+
+
 
 
 
