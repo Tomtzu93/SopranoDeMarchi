@@ -103,7 +103,7 @@ const overlay = document.getElementById("locandina-overlay");
 
 locandina.addEventListener("click", () => {
   overlay.classList.remove("hidden");
-  // Forzo reflow per permettere la transizione
+  // forza reflow per permettere la transizione
   void overlay.offsetWidth;
   overlay.classList.add("show");
 });
@@ -112,8 +112,10 @@ overlay.addEventListener("click", () => {
   overlay.classList.remove("show");
   setTimeout(() => {
     overlay.classList.add("hidden");
-  }, 400); // attende la fine dell'animazione
+  }, 400); // attende la fine della transizione
 });
+
+
 
 
 
