@@ -276,48 +276,63 @@ transform: translateX(-80px); /* sposta più a sinistra */
     }
 }
 
-/* Overlay fullscreen */
+/* Overlay fullscreen sopra a tutto */
 #locandina-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
+  display: none;            /* nascosto di default */
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* sopra tutto */
+  background: rgba(0,0,0,0.6);
+  z-index: 10000;
   overflow: hidden;
 }
 
-/* Nascondi di default */
-#locandina-overlay.hidden {
-  display: none;
+/* stato visibile */
+#locandina-overlay.is-open { 
+  display: flex; 
 }
 
-/* Sfondo blur separato */
+/* sfondo blur: sta SOTTO all'immagine */
 #locandina-overlay::before {
   content: "";
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 0;
 }
 
-/* Locandina nitida sopra */
+/* locandina nitida, centrata, con zoom */
 #locandina-overlay img {
   position: relative;
   z-index: 1;
-  max-width: 90%;
-  max-height: 90%;
-  transform: scale(0.8);
+  max-width: min(92vw, 1100px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  transform: scale(0.9);
   opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  will-change: transform, opacity;
 }
 
-#locandina-overlay.show img {
+#locandina-overlay.is-open img {
   transform: scale(1);
   opacity: 1;
 }
+
+/* blocca lo scroll sotto quando l’overlay è aperto */
+body.modal-open { 
+  overflow: hidden; 
+}
+
+/* fallback se il browser non supporta backdrop-filter */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  #locandina-overlay::before { background: rgba(0,0,0,0.6); }
+}
+
+
 
 
 
