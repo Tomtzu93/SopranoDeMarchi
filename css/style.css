@@ -276,36 +276,39 @@ transform: translateX(-80px); /* sposta più a sinistra */
     }
 }
 
-/* Overlay: sfondo nero + livello blur separato */
+/* Overlay fullscreen */
 #locandina-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 9999; /* sopra tutto */
   overflow: hidden;
 }
 
+/* Nascondi di default */
 #locandina-overlay.hidden {
   display: none;
 }
 
-/* Livello blur dietro */
+/* Sfondo blur separato */
 #locandina-overlay::before {
   content: "";
   position: absolute;
   inset: 0;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  z-index: 0; /* sta sotto l’immagine */
+  z-index: 0;
 }
 
-/* L’immagine resta nitida sopra */
+/* Locandina nitida sopra */
 #locandina-overlay img {
   position: relative;
   z-index: 1;
+  max-width: 90%;
+  max-height: 90%;
   transform: scale(0.8);
   opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
@@ -315,6 +318,8 @@ transform: translateX(-80px); /* sposta più a sinistra */
   transform: scale(1);
   opacity: 1;
 }
+
+
 
 
 
