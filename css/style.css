@@ -276,6 +276,11 @@ transform: translateX(-80px); /* sposta più a sinistra */
     }
 }
 
+#locandina-overlay {
+  backdrop-filter: blur(8px); /* sfondo sfocato */
+  -webkit-backdrop-filter: blur(8px);
+}
+
 #locandina-overlay img {
   transform: scale(0.8);
   opacity: 0;
@@ -287,9 +292,7 @@ transform: translateX(-80px); /* sposta più a sinistra */
   opacity: 1;
 }
 
-body.blurred {
-  overflow: hidden; /* evita lo scroll dietro */
-}
+
 
 
 
