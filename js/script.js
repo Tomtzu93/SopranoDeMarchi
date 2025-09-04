@@ -100,22 +100,20 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfn7sDoH5SOtySOzdSlIsfhu
 
 const locandina = document.getElementById("locandina");
 const overlay = document.getElementById("locandina-overlay");
-const body = document.body;
 
 locandina.addEventListener("click", () => {
   overlay.classList.remove("hidden");
-  // forzo reflow per permettere la transizione
-  void overlay.offsetWidth;
+  void overlay.offsetWidth; // forza il reflow
   overlay.classList.add("show");
-  body.classList.add("blurred");
 });
 
 overlay.addEventListener("click", () => {
   overlay.classList.remove("show");
-  body.classList.remove("blurred");
   setTimeout(() => {
     overlay.classList.add("hidden");
   }, 400); // aspetta la fine della transizione
 });
+
+
 
 
