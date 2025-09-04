@@ -97,3 +97,18 @@ fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTfn7sDoH5SOtySOzdSlIsfhu
     console.error("Errore nel caricamento dei dati:", error);
     document.getElementById("posti-rimanenti").innerText = "N/D";
 });
+
+const locandina = document.getElementById("locandina");
+  const overlay = document.getElementById("locandina-overlay");
+  const body = document.body;
+
+  locandina.addEventListener("click", () => {
+    overlay.classList.remove("hidden");
+    body.classList.add("blurred");
+  });
+
+  overlay.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+    body.classList.remove("blurred");
+  });
+
